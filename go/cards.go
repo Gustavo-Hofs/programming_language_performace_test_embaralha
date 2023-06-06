@@ -1,17 +1,5 @@
 package main
 
-/*
-Desafio:
-1. Cria um baralho de N cartas;
-2. A carta do topo é removida e separada do baralho;
-3. A próxima carta é movida para a base do baralho;
-4. Repete até que sobre uma carta;
-
-INPUT: número de cartas (int);
-OUTPUT: array com cartas removidas na sequência
-    e última carta que restou ([]int,int);
-*/
-
 func Embaralha(n int) ([]int, int) {
 	initial_deck := make([]int, n)
 	for i := 0; i < n; i++ {

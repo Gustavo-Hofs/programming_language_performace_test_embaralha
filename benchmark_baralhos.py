@@ -8,9 +8,6 @@ import pyperf
 
 
 def setup():
-    '''
-    Cria executavel e limpa arquivos não utilizados para cada linguagem.
-    '''
     path = os.getcwd()
     subprocess.run(['mkdir', 'executables'])
     subprocess.run(['mkdir', 'results'])
@@ -18,119 +15,92 @@ def setup():
 
     print('Build python')
     path_py = "/".join([path, "python"])
-    print('Criando executavel...')
+    print('Creating executable...')
     subprocess.run(['pyinstaller', '-F', 'embaralha.py'],
                    cwd=path_py, capture_output=True)
-    print('Copiando executavel...')
+    print('Copying executable...')
     subprocess.run(['cp', 'python/dist/embaralha', 'executables/py_embaralha'])
-    print('Deletando lixo...')
+    print('Deleting trash...')
     subprocess.run(['rm', '-r', 'python/build',
                    'python/dist', 'python/embaralha.spec'])
-    print('Testando...')
+    print('Testing...')
     resposta = subprocess.run(
         ['./executables/py_embaralha', '52'], capture_output=True).stdout
-    print('Esperando:', referencia, len(referencia), type(referencia))
-    print('Recebido:', resposta, len(resposta), type(resposta))
-    print('Sucesso!') if resposta == referencia else print('Falha com py!')
+    print('Waiting for:', referencia, len(referencia), type(referencia))
+    print('Received:', resposta, len(resposta), type(resposta))
+    print('Success!') if resposta == referencia else print('Fails with py!')
     print()
 
     print('Build go')
-    print('Criando executavel...')
+    print('Creating executable...')
     subprocess.run(['go', 'build', 'go/main.go', 'go/cards.go'])
-    print('Copiando executavel...')
+    print('Copying executable...')
     subprocess.run(['cp', 'main', 'executables/go_embaralha'])
-    print('Deletando lixo...')
+    print('Deleting trash...')
     subprocess.run(['rm', 'main'])
-    print('Testando...')
+    print('Testing...')
     resposta = subprocess.run(
         ['./executables/go_embaralha', '52'], capture_output=True).stdout
-    print('Esperando:', referencia, len(referencia), type(referencia))
-    print('Recebido:', resposta, len(resposta), type(resposta))
-    print('Sucesso!') if resposta == referencia else print('Falha com go!')
+    print('Waiting for:', referencia, len(referencia), type(referencia))
+    print('Received:', resposta, len(resposta), type(resposta))
+    print('Success!') if resposta == referencia else print('Fails with go!')
     print()
 
     print('Build rust')
-    print('Criando executavel...')
+    print('Creating executable...')
     path_rust = '/'.join([path, 'rust', 'embaralha'])
     subprocess.run(['cargo', 'build', '-r'],
                    cwd=path_rust, capture_output=True)
-    print('Copiando executavel...')
+    print('Copying executable...')
     subprocess.run(
         ['cp', 'rust/embaralha/target/release/embaralha', 'executables/rust_embaralha'])
-    print('Deletando lixo...')
+    print('Deleting trash...')
     subprocess.run(['cargo', 'clean'], cwd=path_rust)
-    print('Testando...')
+    print('Testing...')
     resposta = subprocess.run(
         ['./executables/rust_embaralha', '52'], capture_output=True).stdout
-    print('Esperando:', referencia, len(referencia), type(referencia))
-    print('Recebido:', resposta, len(resposta), type(resposta))
-    print('Sucesso!') if resposta == referencia else print('Falha com rust!')
+    print('Waiting for:', referencia, len(referencia), type(referencia))
+    print('Received:', resposta, len(resposta), type(resposta))
+    print('Success!') if resposta == referencia else print('Fails with rust!')
     print()
 
     print('Build bash')
-    print('Criando executavel...')
+    print('Creating executable...')
     subprocess.run(['chmod', '+x', 'bash/embaralha.sh'])
-    print('Copiando executavel...')
+    print('Copying executable...')
     subprocess.run(['cp', 'bash/embaralha.sh', 'executables/bash_embaralha'])
-    print('Deletando lixo...')
-    print('Testando...')
+    print('Deleting trash...')
+    print('Testing...')
     resposta = subprocess.run(
         ['./executables/bash_embaralha', '52'], capture_output=True).stdout
-    print('Esperando:', referencia, len(referencia), type(referencia))
-    print('Recebido:', resposta, len(resposta), type(resposta))
-    print('Sucesso!') if resposta == referencia else print('Falha com bash!')
+    print('Waiting for:', referencia, len(referencia), type(referencia))
+    print('Received:', resposta, len(resposta), type(resposta))
+    print('Success!') if resposta == referencia else print('Fails with bash!')
     print()
 
     print('Build cpp')
-    print('Criando executavel...')
+    print('Creating executable...')
     subprocess.run(['g++', 'cpp/embaralha.cpp', '-o', 'cpp_embaralha'])
-    print('Copiando executavel...')
+    print('Copying executable...')
     subprocess.run(['cp', 'cpp_embaralha', 'executables/cpp_embaralha'])
-    print('Deletando lixo...')
+    print('Deleting trash...')
     subprocess.run(['rm', 'cpp_embaralha'])
-    print('Testando...')
+    print('Testing...')
     resposta = subprocess.run(
         ['./executables/cpp_embaralha', '52'], capture_output=True).stdout
-    print('Esperando:', referencia, len(referencia), type(referencia))
-    print('Recebido:', resposta, len(resposta), type(resposta))
-    print('Sucesso!') if resposta == referencia else print('Falha com cpp!')
+    print('Waiting for:', referencia, len(referencia), type(referencia))
+    print('Received:', resposta, len(resposta), type(resposta))
+    print('Success!') if resposta == referencia else print('Fails with cpp!')
     print()
-
-
-# def benchmark(N):
-#     #linguagens = ['py','go','rust']
-#     linguagens = ['go','rust']
-#     benchs = []
-#     for lingua in linguagens:
-#         t0 = time.time()
-#         res = subprocess.run(['./executables/'+lingua+'_embaralha', N], capture_output=True).stdout
-#         t1 = time.time()
-#         benchs.append((lingua,t1-t0))
-#     return benchs
-#
-#
-# def print_res(benchs):
-#     print('Resultados:')
-#     for b in benchs:
-#         print(b)
-#
-#
-# def bench():
-#     N = str(100000)
-#     print('Realizando benckmarks para N='+N)
-#     res = benchmark(N)
-#     print_res(res)
 
 
 def bench2(N, linguagens):
     N = str(N)
     for lingua in linguagens:
         print('Benchmarking '+lingua+' N='+N+' speed...')
-        # subprocess.run(['pyperf','command','--name','speed N='+N,'-o','results/'+lingua+'_N='+N+'_time.json','./executables/'+lingua+'_embaralha',N])
         subprocess.run(['pyperf', 'command', '-p', '1', '--name', 'speed N='+N, '-o',
                        'results/'+lingua+'_N='+N+'_time.json', './executables/'+lingua+'_embaralha', N])
         print('Benchmarking '+lingua+' N='+N+' memory...')
-        # subprocess.run(['pyperf','command','--name','memory N='+N,'--track-memory','-o','results/'+lingua+'_N='+N+'_memory.json','./executables/'+lingua+'_embaralha',N])
         subprocess.run(['pyperf', 'command', '-p', '1', '--name', 'memory N='+N, '--track-memory',
                        '-o', 'results/'+lingua+'_N='+N+'_memory.json', './executables/'+lingua+'_embaralha', N])
         print()
@@ -138,7 +108,7 @@ def bench2(N, linguagens):
 
 def show_result(N, linguagens):
     N = str(N)
-    print('Resultados para N='+N)
+    print('Results for N='+N)
     t_jsons = ['results/'+i+'_N='+N+'_time.json'for i in linguagens]
     subprocess.run(['pyperf', 'compare_to', '--table', *t_jsons])
     m_jsons = ['results/'+i+'_N='+N+'_memory.json'for i in linguagens]
@@ -151,13 +121,12 @@ def clean():
 
 
 if __name__ == "__main__":
-    print('**Benchmark Baralhos**')
+    print('**Benchmark Embaralha**')
     print()
-    print('Iniciando Setup:')
+    print('Initiating Setup:')
     print()
     setup()
-    # bench()
-    print('Realizando Testes:')
+    print('Performing Tests:')
     print()
     N, linguagens = 10000, ['py', 'cpp', 'go', 'rust']
     bench2(N, linguagens)
@@ -167,12 +136,12 @@ if __name__ == "__main__":
     bench2(N3, linguagens3)
     N4, linguagens4 = 10000000, ['go', 'rust']
     bench2(N4, linguagens4)
-    print('Mostrando Resultados:')
+    print('Showing Results:')
     print()
     show_result(N3, linguagens3)
     show_result(N, linguagens)
     show_result(N2, linguagens2)
     show_result(N4, linguagens4)
-    print('Deletando Executaveis e Resultados...')
+    print('Deleting Executables e Results...')
     clean()
-    print('**Finalizado!**')
+    print('**Finished!**')

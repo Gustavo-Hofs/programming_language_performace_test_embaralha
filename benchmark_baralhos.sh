@@ -6,59 +6,59 @@ setup () {
   referencia="[[1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,2,6,10,14,18,22,26,30,34,38,42,46,50,4,12,20,28,36,44,52,16,32,48,24,8],40]"
 
   echo 'Build python'
-  echo 'Criando executavel...'
+  echo 'Creating executable...'
   (cd python; pyinstaller -F embaralha.py) &> /dev/null
-  echo 'Copiando executavel...'
+  echo 'Copying executable...'
   cp python/dist/embaralha executables/py_embaralha
-  echo 'Deletando lixo...'
+  echo 'Deleting trash...'
   rm -r python/build python/dist python/embaralha.spec
-  echo 'Testando...'
-  [[ "$(./executables/py_embaralha 52)" == "$referencia" ]] && echo "Sucesso!" || echo "Falha com py!"
+  echo 'Testing...'
+  [[ "$(./executables/py_embaralha 52)" == "$referencia" ]] && echo "Success!" || echo "Fails with py!"
   echo 
 
   echo 'Build go'
-  echo 'Criando executavel...'
+  echo 'Creating executable...'
   go build go/main.go go/cards.go
-  echo 'Copiando executavel...'
+  echo 'Copying executable...'
   cp main executables/go_embaralha
-  echo 'Deletando lixo...'
+  echo 'Deleting trash...'
   rm main
-  echo 'Testando...'
-  [[ "$(./executables/go_embaralha 52)" == "$referencia" ]] && echo "Sucesso!" || echo "Falha com go!"
+  echo 'Testing...'
+  [[ "$(./executables/go_embaralha 52)" == "$referencia" ]] && echo "Success!" || echo "Fails with go!"
   echo 
 
   echo 'Build rust'
-  echo 'Criando executavel...'
+  echo 'Creating executable...'
   (cd rust/embaralha;cargo build -r) &> /dev/null
-  echo 'Copiando executavel...'
+  echo 'Copying executable...'
   cp rust/embaralha/target/release/embaralha executables/rust_embaralha
-  echo 'Deletando lixo...'
+  echo 'Deleting trash...'
   cd rust/embaralha
   cargo clean
   cd ../..
-  echo 'Testando...'
-  [[ "$(./executables/rust_embaralha 52)" == "$referencia" ]] && echo "Sucesso!" || echo "Falha com rust!"
+  echo 'Testing...'
+  [[ "$(./executables/rust_embaralha 52)" == "$referencia" ]] && echo "Success!" || echo "Fails with rust!"
   echo 
 
   echo 'Build bash'
-  echo 'Criando executavel...'
+  echo 'Creating executable...'
   chmod +x bash/embaralha.sh
-  echo 'Copiando executavel...'
+  echo 'Copying executable...'
   cp bash/embaralha.sh executables/bash_embaralha
-  echo 'Deletando lixo...'
-  echo 'Testando...'
-  [[ "$(./executables/bash_embaralha 52)" == "$referencia" ]] && echo "Sucesso!" || echo "Falha com bash!"
+  echo 'Deleting trash...'
+  echo 'Testing...'
+  [[ "$(./executables/bash_embaralha 52)" == "$referencia" ]] && echo "Success!" || echo "Fails with bash!"
   echo 
 
   echo 'Build cpp'
-  echo 'Criando executavel...'
+  echo 'Creating executable...'
   g++ cpp/embaralha.cpp -o cpp_embaralha
-  echo 'Copiando executavel...'
+  echo 'Copying executable...'
   cp cpp_embaralha executables/cpp_embaralha
-  echo 'Deletando lixo...'
+  echo 'Deleting trash...'
   rm cpp_embaralha
-  echo 'Testando...'
-  [[ "$(./executables/cpp_embaralha 52)" == "$referencia" ]] && echo "Sucesso!" || echo "Falha com cpp!"
+  echo 'Testing...'
+  [[ "$(./executables/cpp_embaralha 52)" == "$referencia" ]] && echo "Success!" || echo "Fails with cpp!"
   echo 
 }
 
@@ -81,7 +81,7 @@ show_result(){
   args=("$@")
   N=${args[0]}
   unset args[0]
-  echo 'Resultados para N='$N
+  echo 'Results for N='$N
   t_jsons=""
   m_jsons=""
   for lingua in "${args[@]}"; do
@@ -97,23 +97,23 @@ clean(){
   rm -r executables results
 }
 
-echo "**Benchmark Baralhos**"
+echo "**Benchmark Embaralha**"
 echo
-echo "Iniciando Setup:"
+echo "Initiating Setup:"
 echo
 setup
-echo "Realizando Testes:"
+echo "Performing Tests:"
 echo
 bench2 10000 py cpp go rust
 bench2 1000000 cpp go rust
 bench2 1000 bash py go
 bench2 10000000 go rust
-echo "Mostrando Resultados:"
+echo "Showing Results:"
 echo
 show_result 1000 bash py go
 show_result 10000 py cpp go rust
 show_result 1000000 cpp go rust
 show_result 10000000 go rust
-echo "Deletando Executaveis e Resultados..."
+echo "Deleting Executables e Results..."
 clean
-echo "**Finalizado!**"
+echo "**Finished!**"
