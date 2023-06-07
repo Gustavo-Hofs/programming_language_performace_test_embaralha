@@ -1,5 +1,4 @@
-# programming_language_performace_test_embaralha
-Performance comparison of programming languages.
+# Comparação de performace Embaralha
 
 ### Objetivo
 O objetivo desse projeto é comparar a performace das seguintes linguagens de programação:
@@ -23,13 +22,14 @@ Todas as linguagens devem implementar uma função que:
 Para fazer o benchmark, foi utilizado pyperf.
 
 ### Execução
-Pre requisitos:
+Pré requisitos:
 - python
 - pyperf
 - go
 - rust
 - bash
 - gpp
+
 Para iniciar o benchmark, mostrar os resultados e deletar arquivos extras gerados:
 ~~~
 ./benchmar_baralhos.py
@@ -43,3 +43,7 @@ ou
 ![image](https://github.com/Gustavo-Hofs/programming_language_performace_test_embaralha/assets/54177943/0b5de0f3-ed91-4eff-a96a-0da7ba0953ae)
 
 ### Conclusão
+Nesse benchmark, Bash performou surpreendentemente lento, ainda mais lento que Python.
+Python foi mais lento e precisou de mais memória que C++, Go e Rust.
+C++ foi mais lento que Go e Rust.
+Rust foi mais rápido e precisou de menos memória que Go.
