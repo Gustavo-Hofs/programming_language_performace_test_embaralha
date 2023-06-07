@@ -68,11 +68,9 @@ bench2(){
   unset args[0]
   for lingua in "${args[@]}"; do
     echo "Benchmarking "$lingua" N="$N" speed..."
-    #pyperf command --name speed_N=$N -o results/${lingua}_N=${N}_time.json ./executables/${lingua}_embaralha $N
-    pyperf command -p 1 --name speed_N=$N -o results/${lingua}_N=${N}_time.json ./executables/${lingua}_embaralha $N
+    pyperf command --name speed_N=$N -o results/${lingua}_N=${N}_time.json ./executables/${lingua}_embaralha $N
     echo "Benchmarking "$lingua" N="$N" memory..."
-    #pyperf command --name memory_N=$N --track-memory -o results/${lingua}_N=${N}_memory.json ./executables/${lingua}_embaralha $N
-    pyperf command -p 1 --name memory_N=$N --track-memory -o results/${lingua}_N=${N}_memory.json ./executables/${lingua}_embaralha $N
+    pyperf command --name memory_N=$N --track-memory -o results/${lingua}_N=${N}_memory.json ./executables/${lingua}_embaralha $N
     echo 
   done
 }

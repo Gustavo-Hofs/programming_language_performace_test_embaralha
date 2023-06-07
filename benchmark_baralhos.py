@@ -98,10 +98,10 @@ def bench2(N, linguagens):
     N = str(N)
     for lingua in linguagens:
         print('Benchmarking '+lingua+' N='+N+' speed...')
-        subprocess.run(['pyperf', 'command', '-p', '1', '--name', 'speed N='+N, '-o',
+        subprocess.run(['pyperf', 'command', '--name', 'speed N='+N, '-o',
                        'results/'+lingua+'_N='+N+'_time.json', './executables/'+lingua+'_embaralha', N])
         print('Benchmarking '+lingua+' N='+N+' memory...')
-        subprocess.run(['pyperf', 'command', '-p', '1', '--name', 'memory N='+N, '--track-memory',
+        subprocess.run(['pyperf', 'command', '--name', 'memory N='+N, '--track-memory',
                        '-o', 'results/'+lingua+'_N='+N+'_memory.json', './executables/'+lingua+'_embaralha', N])
         print()
 
