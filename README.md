@@ -1,44 +1,48 @@
-# programming_language_performace_test_embaralha
-Performance comparison of programming languages.
+# Performance comparison Embaralha
 
-### Objetivo
-O objetivo desse projeto é comparar a performace das seguintes linguagens de programação:
+### Goal
+The objective of this project is to compare the performance of the following programming languages:
 - Python
 - Go
 - Rust
 - Bash
 - C++
 
-### Metodo
-Todas as linguagens devem implementar uma função que:
+### Method
+All languages must implement a function that:
 
-1. Cria um baralho de N cartas;
-2. A carta do topo é removida e separada do baralho;
-3. A próxima carta é movida para a base do baralho;
-4. Repete até que sobre uma carta;
-5. INPUT: número de cartas (int);
-6. OUTPUT: array com cartas removidas na sequência
-    e última carta que restou ([]int,int);
+1. Creates a deck of N cards;
+2. The top card is removed and separated from the deck;
+3. The next card is moved to the bottom of the deck;
+4. Repeat until you have one card left;
+5. INPUT: number of cards (int);
+6. OUTPUT: array with cards removed in sequence and last card left ([]int,int);
 
-Para fazer o benchmark, foi utilizado pyperf.
+To do the benchmark, pyperf was used.
 
-### Execução
-Pre requisitos:
+### Execution
+Prerequisites:
 - python
 - pyperf
 - go
 - rust
 - bash
 - gpp
-Para iniciar o benchmark, mostrar os resultados e deletar arquivos extras gerados:
+
+To start the benchmark, display the results and delete generated extra files:
 ~~~
 ./benchmar_baralhos.py
 ~~~
-ou
+or
 ~~~
 ./benchmar_baralhos.sh
 ~~~
 
-### Resultados
+### Results
+![image](https://github.com/Gustavo-Hofs/programming_language_performace_test_embaralha/assets/54177943/0b5de0f3-ed91-4eff-a96a-0da7ba0953ae)
 
-### Conclusão
+### Conclusion
+In this benchmark, Bash performed surprisingly slowly, even slower than Python.
+Python was slower and needed more memory than C++, Go, and Rust.
+C++ was slower than Go and Rust.
+Rust was faster and needed less memory than Go.
