@@ -40,5 +40,6 @@ ou
 ~~~
 
 ### Resultados
+![image](https://github.com/Gustavo-Hofs/programming_language_performace_test_embaralha/assets/54177943/0b5de0f3-ed91-4eff-a96a-0da7ba0953ae)
 
 ### Conclusão
